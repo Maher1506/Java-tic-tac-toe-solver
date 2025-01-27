@@ -39,13 +39,20 @@ public class Player {
     // check whether the given inputs are correct or not
     private void takeInput() {
         // take the row (X coordinate) for the chosen cell
+        row = getValidInput("Enter row (1-3): ");
+        // take the column (Y coordinate) for the chosen cell
+        column = getValidInput("Enter column (1-3): ");
+    }
+
+    private int getValidInput(String prompt) {
+        int input;
         while (true) {
-            System.out.println("Enter row (1-3): ");
+            System.out.println(prompt);
             try {
-                row = sc.nextInt();
+                input = sc.nextInt();
 
                 // handle if the row given is out of bounds
-                if (row > Grid.GRID_SIZE || row < 1) {
+                if (input > Grid.GRID_SIZE || input < 1) {
                     System.out.println("OUT OF BOUNDS");
                 } 
                 // correct input
@@ -57,26 +64,7 @@ public class Player {
                 sc.nextLine(); // clear buffer for next input
             }
         }
-
-        // take the column (Y coordinate) for the chosen cell
-        while (true) {
-            System.out.println("Enter column (1-3): ");
-            try {
-                column = sc.nextInt();
-
-                // handle out of bounds input
-                if (column > Grid.GRID_SIZE || column < 1) {
-                    System.out.println("OUT OF BOUNDS");
-                }  
-                // correct input
-                else {
-                    break;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
-                sc.nextLine(); // clear buffer for next input
-            }
-        }
+        return input;
     }
 
     // to diplay player stats
