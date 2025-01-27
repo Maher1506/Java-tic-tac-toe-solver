@@ -3,6 +3,16 @@ public class Player {
     private int score;
     private String name;
 
+    Player(String name) {
+        this.score = 0;
+        this.name = name;
+    }
+
+    // to diplay player stats
+    public void displayPlayer() {
+        System.out.println("Name: " + name + " Score: " + score);
+    }
+
     //getters
     public int getScore() {
         return score;
