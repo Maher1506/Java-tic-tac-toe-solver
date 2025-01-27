@@ -5,13 +5,12 @@ public class Player {
 
     private String name;
     private char mark;
+    private Grid grid;
 
     // for handling the player's input
     private int row;
     private int column;
     private Scanner sc = new Scanner(System.in);
-
-    private Grid grid;
 
     public Player(String name, char mark, Grid grid) {
         this.name = name;
@@ -36,7 +35,7 @@ public class Player {
         grid.displayGrid();
     }
 
-    // check whether the given inputs are correct or not
+    // saves the row and column the user inputs
     private void takeInput() {
         // take the row (X coordinate) for the chosen cell
         row = getValidInput("Enter row (1-3): ");
@@ -44,6 +43,7 @@ public class Player {
         column = getValidInput("Enter column (1-3): ");
     }
 
+    // gets the correct input for the row and column
     private int getValidInput(String prompt) {
         int input;
         while (true) {

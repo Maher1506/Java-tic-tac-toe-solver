@@ -1,5 +1,10 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        //mainMenu();
+
         Grid grid = new Grid();
 
         Player p1 = new Player("P1", 'X', grid);
@@ -31,5 +36,29 @@ public class Main {
             }
             System.out.println();
         }*/
+    }
+
+    // needs to be moved in the Game class constructor.
+    // based on the mode, the game will either assign p2 to a new player or an AI
+    private static void mainMenu() {
+        System.out.println("Welcome to Tic Tac Toe!");
+        System.out.println("To play against an AI press 1 ");
+        System.out.println("To play against another player press 2 ");
+
+        Scanner sc = new Scanner(System.in);
+        int input;
+        while (true) { 
+            try {
+                input = sc.nextInt();
+
+                if (input > 2 || input < 1) {
+                    System.out.println("OUT OF BOUNDS");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+
+            }
+        }
     }
 }
