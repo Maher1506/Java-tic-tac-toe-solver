@@ -19,7 +19,6 @@ public class Main {
             // handle player 2's turn
             game.handlePlayerTurn(p2);
             grid.displayGrid();
-            if (game.isGameOver()) { break; }
         }
         
         game.displayFinalGameState();

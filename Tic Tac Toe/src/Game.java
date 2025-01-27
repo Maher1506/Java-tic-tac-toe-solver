@@ -48,7 +48,7 @@ public class Game {
                 row = sc.nextInt();
 
                 // handle if the row given is out of bounds
-                if (row > 3 || row < 1) {
+                if (row > Grid.GRID_SIZE || row < 1) {
                     System.out.println("OUT OF BOUNDS");
                 } 
                 // correct input
@@ -68,7 +68,7 @@ public class Game {
                 column = sc.nextInt();
 
                 // handle out of bounds input
-                if (column > 3 || column < 1) {
+                if (column > Grid.GRID_SIZE || column < 1) {
                     System.out.println("OUT OF BOUNDS");
                 }  
                 // correct input
