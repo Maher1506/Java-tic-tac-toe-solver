@@ -37,6 +37,7 @@ public class Game {
 
         // mark the chosen cell with the mark
         grid.markCell(row-1, column-1, p.getMark());
+        grid.displayGrid();
     }
 
     // check whether the given inputs are correct or not

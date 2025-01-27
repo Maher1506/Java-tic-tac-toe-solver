@@ -1,10 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        Player p1 = new Player("P1", 'X');
-        Player p2 = new Player("P2", 'O');
         Grid grid = new Grid();
 
-        Game game = new Game(grid, p1, p2);
+        Player p1 = new Player("P1", 'X');
+        Player p2 = new Player("P2", 'O');
+        AIPlayer AI = new AIPlayer("AI", 'O', grid);
+
+        Game game = new Game(grid, p1, AI);
 
         game.displayStats();
         grid.displayGrid();
@@ -17,16 +19,27 @@ public class Main {
             System.out.println();
         }*/
 
-        // main game loop
+        // main game loop (P v P)
+        // while (!game.isGameOver()) {
+        //     // handle player 1's turn
+        //     game.handlePlayerTurn(p1);
+        //     grid.displayGrid();
+
+        //     if (game.isGameOver()) { break; }
+
+        //     // handle player 2's turn
+        //     game.handlePlayerTurn(p2);
+        //     grid.displayGrid();
+        // }
+
         while (!game.isGameOver()) {
             // handle player 1's turn
             game.handlePlayerTurn(p1);
-            grid.displayGrid();
+            
             if (game.isGameOver()) { break; }
 
             // handle player 2's turn
-            game.handlePlayerTurn(p2);
-            grid.displayGrid();
+            AI.chooseRndMove();
         }
         
         game.displayFinalGameState();
