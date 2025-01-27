@@ -9,6 +9,14 @@ public class Main {
         game.displayStats();
         grid.displayGrid();
 
+        // DISPLAYS ALL AVAILABLE MOVES
+        /*for (int[] move : grid.getAvailableMoves()) {
+            for (int i = 0; i < 2; i++) {
+                System.out.print(move[i] + ", ");
+            }
+            System.out.println();
+        }*/
+
         // main game loop
         while (!game.isGameOver()) {
             // handle player 1's turn

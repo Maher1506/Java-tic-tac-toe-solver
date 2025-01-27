@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Grid {
 
     private char[][] grid;
@@ -15,7 +17,25 @@ public class Grid {
         }
     }
 
-    // methos to display the grid
+    // gets all the available (non marked) moves available
+    public ArrayList<int[]> getAvailableMoves() {
+        ArrayList<int[]> res = new ArrayList<>();
+
+        // loop through the grid to find empty cells
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
+                // empty cell (available)
+                if (grid[i][j] == ' ') {
+                    // add the row and column of the cell to the arraylist
+                    int[] move = {i, j};
+                    res.add(move);
+                }
+            }
+        }
+        return res;
+    }
+
+    // method to display the grid
     public void displayGrid() {
         System.out.println();
         for (int i = 0; i < GRID_SIZE; i++) {
