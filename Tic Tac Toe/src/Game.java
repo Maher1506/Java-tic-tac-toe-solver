@@ -1,11 +1,20 @@
 public class Game {
+
+    private Grid grid;
+    private Player player1;
+    private Player player2;
     
-    public static void main(String[] args) {
-        Player p1 = new Player("P1");
-        Player p2 = new Player("P2");
+    public Game(Grid grid, Player p1, Player p2) {
+        this.grid = grid;
+        player1 = p1;
+        player2 = p2;
+    }
 
-        Grid grid = new Grid();
+    // take the turn from the player 
+    public 
 
-        grid.displayGrid();
+    // checks whether the game is finished
+    public boolean isGameOver() {
+        return false;
     }
 }

@@ -1,4 +1,5 @@
 public class Grid {
+    
     private char[][] grid;
 
     public Grid() {
