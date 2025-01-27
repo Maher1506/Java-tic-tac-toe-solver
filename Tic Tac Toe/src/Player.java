@@ -1,31 +1,31 @@
 public class Player {
 
-    private int score;
     private String name;
+    private char mark;
 
-    Player(String name) {
-        this.score = 0;
+    Player(String name, char mark) {
         this.name = name;
+        this.mark = mark;
     }
 
     // to diplay player stats
     public void displayPlayer() {
-        System.out.println("Name: " + name + " Score: " + score);
+        System.out.println("Name: " + name + " | Mark: " + mark);
     }
 
-    //getters
-    public int getScore() {
-        return score;
-    }
+    // getters
     public String getName() {
         return name;
     }
+    public char getMark() {
+        return mark;
+    }
 
-    // setters
-    public void setScore(int newScore) {
-        score = newScore;
-    } 
+    // setters 
     public void setName(String newName) {
         name = newName;
+    }
+    public void setMark(char mark) {
+        this.mark = mark;
     }
 }

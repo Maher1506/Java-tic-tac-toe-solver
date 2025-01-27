@@ -11,10 +11,18 @@ public class Game {
     }
 
     // take the turn from the player 
-    public 
+    public void takeTurn(Player p) {
+        System.out.println();
+    }
 
     // checks whether the game is finished
     public boolean isGameOver() {
         return false;
+    }
+
+    // displays each player's name along with his/her mark at the start
+    public void displayStats() {
+        player1.displayPlayer();
+        player2.displayPlayer();
     }
 }
