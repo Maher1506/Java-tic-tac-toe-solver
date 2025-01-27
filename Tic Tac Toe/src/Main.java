@@ -11,7 +11,17 @@ public class Main {
 
         // main game loop
         while (!game.isGameOver()) {
+            // handle player 1's turn
+            game.handlePlayerTurn(p1);
+            grid.displayGrid();
+            if (game.isGameOver()) { break; }
 
+            // handle player 2's turn
+            game.handlePlayerTurn(p2);
+            grid.displayGrid();
+            if (game.isGameOver()) { break; }
         }
+        
+        game.displayFinalGameState();
     }
 }

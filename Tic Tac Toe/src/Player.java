@@ -3,7 +3,7 @@ public class Player {
     private String name;
     private char mark;
 
-    Player(String name, char mark) {
+    public Player(String name, char mark) {
         this.name = name;
         this.mark = mark;
     }
