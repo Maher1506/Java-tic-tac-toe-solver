@@ -1,4 +1,8 @@
+package Players;
+
 import java.util.ArrayList;
+
+import Grid.Grid;
 
 public class AIPlayer extends Player {
 

@@ -1,14 +1,18 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Grid.Grid;
+import Players.AIPlayer;
+import Players.HumanPlayer;
+
 public class Main {
     public static void main(String[] args) {
         //mainMenu();
 
         Grid grid = new Grid();
 
-        Player p1 = new Player("P1", 'X', grid);
-        Player p2 = new Player("P2", 'O', grid);
+        HumanPlayer p1 = new HumanPlayer("P1", 'X', grid);
+        HumanPlayer p2 = new HumanPlayer("P2", 'O', grid);
         AIPlayer AI = new AIPlayer("AI", 'O', grid);
 
         Game game = new Game(grid, p1, AI);

@@ -1,38 +1,37 @@
+package Players;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Player {
+import Grid.Grid;
 
-    private String name;
-    private char mark;
-    private Grid grid;
+public class HumanPlayer extends Player {
 
     // for handling the player's input
     private int row;
     private int column;
     private Scanner sc = new Scanner(System.in);
 
-    public Player(String name, char mark, Grid grid) {
-        this.name = name;
-        this.mark = mark;
-        this.grid = grid;
+    public HumanPlayer(String name, char mark, Grid grid) {
+        super(name, mark, grid);
     }
 
     // take the turn from the player 
+    @Override
     public void handleTurn() {
-        System.out.println("Player " + name + "'s turn: (" + mark + ") ");
+        System.out.println("Player " + getName() + "'s turn: (" + getMark() + ") ");
         takeInput();
 
         // handle if the cell chosen is already marked
-        while (grid.getCell(row-1, column-1) != ' ') {
+        while (getGrid().getCell(row-1, column-1) != ' ') {
             System.out.println("THE CHOSEN CELL IS ALREADY MARKED");
-            grid.displayGrid();
+            getGrid().displayGrid();
             takeInput();
         }
 
         // mark the chosen cell with the mark
-        grid.markCell(row-1, column-1, mark);
-        grid.displayGrid();
+        getGrid().markCell(row-1, column-1, getMark());
+        getGrid().displayGrid();
     }
 
     // saves the row and column the user inputs
@@ -65,29 +64,5 @@ public class Player {
             }
         }
         return input;
-    }
-
-    // to diplay player stats
-    public void displayPlayer() {
-        System.out.println("Name: " + name + " | Mark: " + mark);
-    }
-
-    // getters
-    public String getName() {
-        return name;
-    }
-    public char getMark() {
-        return mark;
-    }
-    public Grid getGrid() {
-        return grid;
-    }
-
-    // setters 
-    public void setName(String newName) {
-        name = newName;
-    }
-    public void setMark(char mark) {
-        this.mark = mark;
     }
 }
