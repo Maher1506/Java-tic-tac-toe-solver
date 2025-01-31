@@ -1,3 +1,4 @@
+package GameLogic;
 public class MoveScore {
     
     int[] move;
@@ -6,5 +7,12 @@ public class MoveScore {
     public MoveScore(int score, int[] move) {
         this.move = move;
         this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
+    public int[] getMove() {
+        return move;
     }
 }

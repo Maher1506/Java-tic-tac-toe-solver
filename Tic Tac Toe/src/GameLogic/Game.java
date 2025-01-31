@@ -1,3 +1,4 @@
+package GameLogic;
 import Grid.Grid;
 import Players.Player;
 
@@ -18,7 +19,7 @@ public class Game {
 
     // checks whether the game is finished
     public boolean isGameOver() {
-        return grid.isTerminalState() || grid.isFull();
+        return grid.isGameWon() || grid.isFull();
     }
 
     // display the winner and loser or display if there is a tie

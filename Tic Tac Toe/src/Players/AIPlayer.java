@@ -2,6 +2,7 @@ package Players;
 
 import java.util.ArrayList;
 
+import GameLogic.MoveScore;
 import Grid.Grid;
 
 public class AIPlayer extends Player {
@@ -15,7 +16,8 @@ public class AIPlayer extends Player {
     public void handleTurn() {
         System.out.println("AI's turn: (" + getMark() + ") ");
 
-        chooseRndMove();
+        //chooseRndMove();
+        chooseBestMove();
         getGrid().displayGrid();
 
         System.out.println("AI made its move");
@@ -24,12 +26,68 @@ public class AIPlayer extends Player {
     // method to choose the best move to play (AI Impossible Bot)
     // this approach uses the Minimax algorithm to choose the move with the best possible outcome
     public void chooseBestMove() {
-        
-        chooseBestMoveHelper(getGrid(), true);
-
+        MoveScore bestMove = chooseBestMoveHelper(getGrid(), true, 0);
+        getGrid().markCell(bestMove.getMove()[0], bestMove.getMove()[1], getMark());
     }
-    private int[] chooseBestMoveHelper(Grid state, boolean isMaximizingPlayer) {
-        if ()
+    private MoveScore chooseBestMoveHelper(Grid state, boolean isMaximizingPlayer, int depth) {
+        System.out.println("depth: " + depth);
+        state.displayGrid();
+
+        // teriminal state reached
+        if (state.isTerminalState()) {
+            char winnerMark = state.getWinnerMark(); // mark of winner
+            // tie
+            if (winnerMark == '\0') { 
+                System.out.println("reached end (Tie)");
+                return new MoveScore(0, null); 
+            }
+            // the AI won
+            else if (winnerMark == getMark()) { 
+                System.out.println("reached end (AI won)");
+                return new MoveScore(1, null); 
+            }
+            // the opponent won
+            else {
+                System.out.println("reached end (Opponnent won)");
+                return new MoveScore(-1, null); 
+            }
+        }
+
+        // if the turn of the MAX player (AI's turn)
+        if (isMaximizingPlayer) {
+            // worst possible case
+            MoveScore bestMove = new MoveScore(Integer.MIN_VALUE, null); 
+            // loop through every possible move
+            for (int[] move : state.getAvailableMoves()) {
+                // apply move on the current state and save it as new state
+                Grid newState = new Grid(state);
+                newState.markCell(move[0], move[1], getMark());
+
+                // get the score of every move recursviely
+                MoveScore currentMove = chooseBestMoveHelper(newState, false, depth+1);
+                // choose the best move (highest score)
+                bestMove = new MoveScore(Math.max(currentMove.getScore(), bestMove.getScore()), move);
+            }
+            return bestMove;
+        }
+
+        // if the turn of the MIN player (Opponnent's turn)
+        else {
+            // worst possible case
+            MoveScore bestMove = new MoveScore(Integer.MAX_VALUE, null);
+            // loop through every possible move
+            for (int[] move : state.getAvailableMoves()) {
+                // apply move on the current state and save it as new state
+                Grid newState = new Grid(state);
+                newState.markCell(move[0], move[1], getOpponentMark());
+
+                // get the score of every move recursviely
+                MoveScore currentMove = chooseBestMoveHelper(newState, true, depth+1);
+                // choose the best move (highest score)
+                bestMove = new MoveScore(Math.min(currentMove.getScore(), bestMove.getScore()), move);
+            }
+            return bestMove;
+        }
     }
 
     // method to choose a random move to play (AI Random Bot)

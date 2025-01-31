@@ -8,6 +8,7 @@ public class Grid {
     
     public static final int GRID_SIZE = 3;
 
+    // default constructor
     public Grid() {
         grid = new char[GRID_SIZE][GRID_SIZE];
 
@@ -15,6 +16,17 @@ public class Grid {
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
                 grid[i][j] = ' ';
+            }
+        }
+    }
+
+    // copy constructor 
+    public Grid(Grid other) {
+        grid = new char[GRID_SIZE][GRID_SIZE];
+
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
+                grid[i][j] = other.getCell(i, j);
             }
         }
     }
@@ -76,7 +88,7 @@ public class Grid {
     }
 
      // checks whether the game is won by any player
-     public boolean isTerminalState() {
+     public boolean isGameWon() {
         // check the rows and colums simultaneously
         for (int i = 0; i < GRID_SIZE; i++) {
             // check the ith row
@@ -116,6 +128,11 @@ public class Grid {
 
         // game is still ongoing
         return false;
+    }
+
+    // returns true if the grid reached the end of the game
+    public boolean isTerminalState() {
+        return isGameWon() || isFull();
     }
 
     // to mark a cell in the grid

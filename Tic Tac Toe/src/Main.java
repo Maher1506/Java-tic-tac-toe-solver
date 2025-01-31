@@ -1,6 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import GameLogic.Game;
 import Grid.Grid;
 import Players.AIPlayer;
 import Players.HumanPlayer;

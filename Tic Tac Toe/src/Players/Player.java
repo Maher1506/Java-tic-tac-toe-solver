@@ -22,6 +22,16 @@ public abstract class Player {
         System.out.println("Name: " + name + " | Mark: " + mark);
     }
 
+    // to get the mark of the opponent
+    public char getOpponentMark() {
+        if (mark == 'X') { 
+            return '0'; 
+        }
+        else {
+            return 'X';
+        }
+    }
+
     // getters
     public String getName() {
         return name;
