@@ -28,7 +28,7 @@ public class Game {
         for (int i = 0; i < Grid.GRID_SIZE; i++) {
             // check the ith row
             if (grid.getCell(i, 0) == grid.getCell(i, 1) && 
-                grid.getCell(i, 1) ==grid.getCell(i, 2) && 
+                grid.getCell(i, 1) == grid.getCell(i, 2) && 
                 (grid.getCell(i, 0) != ' ')) {
                 
                 winnerMark = grid.getCell(i, 0);
