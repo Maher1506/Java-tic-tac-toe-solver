@@ -30,25 +30,22 @@ public class AIPlayer extends Player {
         getGrid().markCell(bestMove.getMove()[0], bestMove.getMove()[1], getMark());
     }
     private MoveScore chooseBestMoveHelper(Grid state, boolean isMaximizingPlayer, int depth) {
-        System.out.println("depth: " + depth);
-        state.displayGrid();
+        //System.out.println("depth: " + depth);
+        //state.displayGrid();
 
         // teriminal state reached
         if (state.isTerminalState()) {
             char winnerMark = state.getWinnerMark(); // mark of winner
             // tie
             if (winnerMark == '\0') { 
-                System.out.println("reached end (Tie)");
                 return new MoveScore(0, null); 
             }
             // the AI won
             else if (winnerMark == getMark()) { 
-                System.out.println("reached end (AI won)");
                 return new MoveScore(1, null); 
             }
             // the opponent won
             else {
-                System.out.println("reached end (Opponnent won)");
                 return new MoveScore(-1, null); 
             }
         }
@@ -65,8 +62,10 @@ public class AIPlayer extends Player {
 
                 // get the score of every move recursviely
                 MoveScore currentMove = chooseBestMoveHelper(newState, false, depth+1);
-                // choose the best move (highest score)
-                bestMove = new MoveScore(Math.max(currentMove.getScore(), bestMove.getScore()), move);
+                // update the best move of current move is better
+                if (currentMove.getScore() > bestMove.getScore()) {
+                    bestMove = new MoveScore(currentMove.getScore(), move);
+                }
             }
             return bestMove;
         }
@@ -83,9 +82,10 @@ public class AIPlayer extends Player {
 
                 // get the score of every move recursviely
                 MoveScore currentMove = chooseBestMoveHelper(newState, true, depth+1);
-                // choose the best move (highest score)
-                bestMove = new MoveScore(Math.min(currentMove.getScore(), bestMove.getScore()), move);
-            }
+                // update the best move of current move is better
+                if (currentMove.getScore() < bestMove.getScore()) {
+                    bestMove = new MoveScore(currentMove.getScore(), move);
+                }            }
             return bestMove;
         }
     }
