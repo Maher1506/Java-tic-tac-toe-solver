@@ -1,6 +1,5 @@
 package Players;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import Grid.Grid;
@@ -25,14 +24,13 @@ public class AIPlayer extends Player {
     // method to choose the best move to play (AI Impossible Bot)
     // this approach uses the Minimax algorithm to choose the move with the best possible outcome
     public void chooseBestMove() {
-        ArrayList<int[]> availableMoves = getGrid().getAvailableMoves();
-        Grid grid = getGrid();
-
+        
+        chooseBestMoveHelper(getGrid(), true);
 
     }
-    /*private int[] chooseBestMoveHelper(ArrayList<int[]> moves, Grid grid, ) {
-
-    }*/
+    private int[] chooseBestMoveHelper(Grid state, boolean isMaximizingPlayer) {
+        if ()
+    }
 
     // method to choose a random move to play (AI Random Bot)
     private void chooseRndMove() {

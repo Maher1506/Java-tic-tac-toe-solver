@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Grid {
 
     private char[][] grid;
+    private char winnerMark;
     
     public static final int GRID_SIZE = 3;
 
@@ -74,6 +75,49 @@ public class Grid {
         return true;
     }
 
+     // checks whether the game is won by any player
+     public boolean isTerminalState() {
+        // check the rows and colums simultaneously
+        for (int i = 0; i < GRID_SIZE; i++) {
+            // check the ith row
+            if (grid[i][0] == grid[i][1] && 
+                grid[i][1] == grid[i][2] && 
+                (grid[i][0] != ' ')) {
+                
+                winnerMark = grid[i][0];
+                return true;
+            }
+
+            // check the ith column
+            if (grid[0][i] == grid[1][i] && 
+                grid[1][i] == grid[2][i] && 
+                (grid[0][i] != ' ')) {
+                
+                winnerMark = grid[0][i];
+                return true;
+            }
+        }
+
+        // check for both diagonals
+        if (grid[0][0] == grid[1][1] && 
+            grid[1][1] == grid[2][2] && 
+            (grid[0][0] != ' ')) {
+            
+            winnerMark = grid[0][0];
+            return true;
+        }
+        if (grid[0][2] == grid[1][1] && 
+            grid[1][1] == grid[2][0] && 
+            (grid[0][2] != ' ')) {
+            
+            winnerMark = grid[0][2];
+            return true;
+        }
+
+        // game is still ongoing
+        return false;
+    }
+
     // to mark a cell in the grid
     public void markCell(int row, int column, char mark) {
         grid[row][column] = mark;
@@ -82,5 +126,10 @@ public class Grid {
     // to get the value of a specific cell
     public char getCell(int row, int column) {
         return grid[row][column];
+    }
+
+    // getters
+    public char getWinnerMark() {
+        return winnerMark;
     }
 }

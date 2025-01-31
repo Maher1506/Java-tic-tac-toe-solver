@@ -8,7 +8,6 @@ public class Game {
     private Player player2;
 
     // for finding the winner
-    private char winnerMark;
     private Player winnerPlayer;
     
     public Game(Grid grid, Player p1, Player p2) {
@@ -19,60 +18,17 @@ public class Game {
 
     // checks whether the game is finished
     public boolean isGameOver() {
-        return isGameWon() || grid.isFull();
-    }
-
-    // checks whether the game is won by any player
-    private boolean isGameWon() {
-        // check the rows and colums simultaneously
-        for (int i = 0; i < Grid.GRID_SIZE; i++) {
-            // check the ith row
-            if (grid.getCell(i, 0) == grid.getCell(i, 1) && 
-                grid.getCell(i, 1) == grid.getCell(i, 2) && 
-                (grid.getCell(i, 0) != ' ')) {
-                
-                winnerMark = grid.getCell(i, 0);
-                return true;
-            }
-
-            // check the ith column
-            if (grid.getCell(0, i) == grid.getCell(1, i) && 
-                grid.getCell(1, i) == grid.getCell(2, i) && 
-                (grid.getCell(0, i) != ' ')) {
-                
-                winnerMark = grid.getCell(0, i);
-                return true;
-            }
-        }
-
-        // check for both diagonals
-        if (grid.getCell(0, 0) == grid.getCell(1, 1) && 
-            grid.getCell(1, 1) == grid.getCell(2, 2) && 
-            (grid.getCell(0, 0) != ' ')) {
-            
-            winnerMark = grid.getCell(0, 0);
-            return true;
-        }
-        if (grid.getCell(0, 2) == grid.getCell(1, 1) && 
-            grid.getCell(1, 1) == grid.getCell(2, 0) && 
-            (grid.getCell(0, 2) != ' ')) {
-            
-            winnerMark = grid.getCell(0, 2);
-            return true;
-        }
-
-        // game is still ongoing
-        return false;
+        return grid.isTerminalState() || grid.isFull();
     }
 
     // display the winner and loser or display if there is a tie
     public void displayFinalGameState() {
         System.out.println();
 
-        if (winnerMark == 'X') {
+        if (grid.getWinnerMark() == 'X') {
             findWinnerPlayer();
             System.out.println("Player: " + winnerPlayer.getName() + " Won!");
-        } else if (winnerMark == 'O') {
+        } else if (grid.getWinnerMark()  == 'O') {
             findWinnerPlayer();
             System.out.println("Player: " + winnerPlayer.getName() + " Won!");
         } else {
@@ -82,7 +38,7 @@ public class Game {
 
     // method to find which player won from the winner mark
     private void findWinnerPlayer() {
-        if (winnerMark == player1.getMark()) {
+        if (grid.getWinnerMark()  == player1.getMark()) {
             winnerPlayer = player1;
         } else {
             winnerPlayer = player2;
@@ -94,7 +50,7 @@ public class Game {
         player1.displayPlayer();
         player2.displayPlayer();
     }
-
+    
     // getters
     public Player getPlayer1() {
         return player1;
