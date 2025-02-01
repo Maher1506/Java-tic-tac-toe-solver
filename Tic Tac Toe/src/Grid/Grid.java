@@ -23,6 +23,7 @@ public class Grid {
     // copy constructor 
     public Grid(Grid other) {
         grid = new char[GRID_SIZE][GRID_SIZE];
+        winnerMark = other.winnerMark;
 
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {

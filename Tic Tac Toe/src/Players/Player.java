@@ -25,7 +25,7 @@ public abstract class Player {
     // to get the mark of the opponent
     public char getOpponentMark() {
         if (mark == 'X') { 
-            return '0'; 
+            return 'O'; 
         }
         else {
             return 'X';

@@ -14,14 +14,16 @@ public class Main {
 
         HumanPlayer p1 = new HumanPlayer("P1", 'X', grid);
         HumanPlayer p2 = new HumanPlayer("P2", 'O', grid);
-        AIPlayer AI = new AIPlayer("AI", 'O', grid);
 
-        Game game = new Game(grid, p1, AI);
+        AIPlayer AI1 = new AIPlayer("AI", 'O', grid);
+        AIPlayer AI2 = new AIPlayer("AI", 'X', grid);
+
+        Game game = new Game(grid, AI2, AI1);
 
         game.displayStats();
         grid.displayGrid();
 
-        //main game loop (P v P)
+        //main game loop
         while (!game.isGameOver()) {
             // handle player 1's turn
             game.getPlayer1().handleTurn();
@@ -33,14 +35,6 @@ public class Main {
         }
         
         game.displayFinalGameState();
-
-        // DISPLAYS ALL AVAILABLE MOVES
-        /*for (int[] move : grid.getAvailableMoves()) {
-            for (int i = 0; i < 2; i++) {
-                System.out.print(move[i] + ", ");
-            }
-            System.out.println();
-        }*/
     }
 
     // needs to be moved in the Game class constructor.
