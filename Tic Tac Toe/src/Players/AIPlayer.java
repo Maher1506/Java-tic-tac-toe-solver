@@ -17,19 +17,31 @@ public class AIPlayer extends Player {
         System.out.println("AI's turn: (" + getMark() + ") ");
 
         //chooseRndMove();
-        chooseBestMove();
+        //impossibleMode();
+        beatableMode();
         getGrid().displayGrid();
 
         System.out.println("AI made its move");
     }
 
+    // method to allow for mistakes by AI so the player can win
+    // works by sometimes choosing the best move and sometimes choosing a random move
+    public void beatableMode() {
+        double rndFactor = Math.random();
+        if (rndFactor > 0.6) {
+            unbeatableMode();
+        } else {
+            chooseRndMove();
+        }
+    }
+
     // method to choose the best move to play (AI Impossible Bot)
     // this approach uses the Minimax algorithm to choose the move with the best possible outcome
-    public void chooseBestMove() {
-        MoveScore bestMove = chooseBestMoveHelper(getGrid(), true, 0);
+    public void unbeatableMode() {
+        MoveScore bestMove = chooseBestMove(getGrid(), true, 0);
         getGrid().markCell(bestMove.getMove()[0], bestMove.getMove()[1], getMark());
     }
-    private MoveScore chooseBestMoveHelper(Grid state, boolean isMaximizingPlayer, int depth) {
+    private MoveScore chooseBestMove(Grid state, boolean isMaximizingPlayer, int depth) {
         //System.out.println("depth: " + depth);
         //state.displayGrid();
 
@@ -61,7 +73,7 @@ public class AIPlayer extends Player {
                 newState.markCell(move[0], move[1], getMark());
 
                 // get the score of every move recursviely
-                MoveScore currentMove = chooseBestMoveHelper(newState, false, depth+1);
+                MoveScore currentMove = chooseBestMove(newState, false, depth+1);
                 // update the best move of current move is better
                 if (currentMove.getScore() > bestMove.getScore()) {
                     bestMove = new MoveScore(currentMove.getScore(), move);
@@ -81,7 +93,7 @@ public class AIPlayer extends Player {
                 newState.markCell(move[0], move[1], getOpponentMark());
 
                 // get the score of every move recursviely
-                MoveScore currentMove = chooseBestMoveHelper(newState, true, depth+1);
+                MoveScore currentMove = chooseBestMove(newState, true, depth+1);
                 // update the best move of current move is better
                 if (currentMove.getScore() < bestMove.getScore()) {
                     bestMove = new MoveScore(currentMove.getScore(), move);

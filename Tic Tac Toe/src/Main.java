@@ -18,7 +18,7 @@ public class Main {
         AIPlayer AI1 = new AIPlayer("AI", 'O', grid);
         AIPlayer AI2 = new AIPlayer("AI", 'X', grid);
 
-        Game game = new Game(grid, AI2, AI1);
+        Game game = new Game(grid, p1, AI1);
 
         game.displayStats();
         grid.displayGrid();
