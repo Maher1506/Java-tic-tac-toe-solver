@@ -1,5 +1,10 @@
 package GameLogic;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import Grid.Grid;
+import Players.AIPlayer;
+import Players.HumanPlayer;
 import Players.Player;
 
 public class Game {
@@ -11,10 +16,43 @@ public class Game {
     // for finding the winner
     private Player winnerPlayer;
     
-    public Game(Grid grid, Player p1, Player p2) {
+    public Game(Grid grid) {
         this.grid = grid;
-        player1 = p1;
-        player2 = p2;
+        player1 = new HumanPlayer("player 1", 'X', grid);
+
+        int mode = getMode();
+        // player chose to play against AI
+        if (mode == 1) {
+            player2 = new AIPlayer("AI", 'O', grid);
+        } else { // player chose to play agains another player
+            player2 = new HumanPlayer("player 2", 'O', grid);
+        }
+    }
+
+    // acts as a main menu
+    // based on the mode, the game will either assign p2 to a new player or an AI
+    private static int getMode() {
+        System.out.println("Welcome to Tic Tac Toe!");
+        System.out.println("To play against an AI press 1 ");
+        System.out.println("To play against another player press 2 ");
+
+        Scanner sc = new Scanner(System.in);
+        int input;
+        while (true) { 
+            try {
+                input = sc.nextInt();
+
+                if (input > 2 || input < 1) {
+                    System.out.println("OUT OF BOUNDS");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
+                sc.nextLine(); // clear buffer for next input
+            }
+        }
+        return input;
     }
 
     // checks whether the game is finished
