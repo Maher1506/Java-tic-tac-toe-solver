@@ -37,23 +37,24 @@ public class Game {
         System.out.println("To play against an AI press 1 ");
         System.out.println("To play against another player press 2 ");
 
-        Scanner sc = new Scanner(System.in);
-        int input;
-        while (true) { 
-            try {
-                input = sc.nextInt();
+        try (Scanner sc = new Scanner(System.in)) {
+            int input;
+            while (true) { 
+                try {
+                    input = sc.nextInt();
 
-                if (input > 2 || input < 1) {
-                    System.out.println("OUT OF BOUNDS");
-                } else {
-                    break;
+                    if (input > 2 || input < 1) {
+                        System.out.println("OUT OF BOUNDS");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("INCORRECT INPUT (ENTER INTEGER)");
+                    sc.nextLine(); // clear buffer for next input
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
-                sc.nextLine(); // clear buffer for next input
             }
+            return input;
         }
-        return input;
     }
 
     // gets the mode of the AI based on player input
@@ -62,23 +63,24 @@ public class Game {
         System.out.println("To play against a Beatable AI press 2 ");
         System.out.println("To play against an Unbeatable AI press 3 ");
 
-        Scanner sc = new Scanner(System.in);
-        int input;
-        while (true) {
-            try {
-                input = sc.nextInt();
+        try (Scanner sc = new Scanner(System.in)) {
+            int input;
+            while (true) {
+                try {
+                    input = sc.nextInt();
 
-                if (input < 1 || input > 3) {
-                    System.out.println("OUT OF BOUNDS");
-                } else {
-                    break;
+                    if (input < 1 || input > 3) {
+                        System.out.println("OUT OF BOUNDS");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("INCORRECT INPUT (ENTER INTEGER)");
+                    sc.nextLine(); // clear buffer for next input
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
-                sc.nextLine(); // clear buffer for next input
             }
+            return input;
         }
-        return input;
     }
 
     // checks whether the game is finished
