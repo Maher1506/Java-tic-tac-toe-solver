@@ -26,24 +26,20 @@ A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, in
 7. **To replay the game** enter **1** or enter any other key **to exit**
 8. **Enjoy playing!** 🎉
 
-## Code Structure 
-
-src/ 
-├── GameLogic/           
-│   ├── Game.java        # Game management  
-│   ├── MoveScore.java   # Represents move evaluation in Minimax 
-
-├── Grid/             
-│   ├── Grid.java        # Represents the Tic-Tac-Toe board 
-
-├── Players/             
-│   ├── Player.java      # Base abstract class for all players 
-│   ├── HumanPlayer.java # Handles human player input 
-│   ├── AIPlayer.java    # AI player with Minimax & difficulty levels 
-
-├── Enums/               
-│   ├── AIMode.java      # Enum for AI difficulty modes (RANDOM, BEATABLE, UNBEATABLE) 
-├── Main.java            # Main game loop and entry of the game (where the game is running) 
+## 📂 Project Structure
+- **src/**
+  - **GameLogic/**
+    - `Game.java` → Game management
+    - `MoveScore.java` → Represents move evaluation in Minimax
+  - **Grid/**
+    - `Grid.java` → Represents the Tic-Tac-Toe board
+  - **Players/**
+    - `Player.java` → Base abstract class for all players
+    - `HumanPlayer.java` → Handles human player input
+    - `AIPlayer.java` → AI player with Minimax & difficulty levels
+  - **Enums/**
+    - `AIMode.java` → Enum for AI difficulty modes (RANDOM, BEATABLE, UNBEATABLE)
+  - `Main.java` → Main game loop and entry point of the game
 
 ## AI Implementation
 
