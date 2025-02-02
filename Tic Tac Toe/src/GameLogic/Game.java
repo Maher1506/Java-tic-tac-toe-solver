@@ -15,10 +15,15 @@ public class Game {
 
     // for finding the winner
     private Player winnerPlayer;
+
+    private Scanner sc = new Scanner(System.in); // for input
     
     public Game(Grid grid) {
         this.grid = grid;
-        player1 = new HumanPlayer("player 1", 'X', grid);
+
+        player1 = new HumanPlayer("Player 1", 'X', grid);
+        // set the name of the first player
+        setPlayerName(player1);
 
         int mode = getMode();
         // player chose to play against AI
@@ -27,60 +32,67 @@ public class Game {
             player2 = new AIPlayer("AI", 'O', grid, aiMode);
         } else { // player chose to play agains another player
             player2 = new HumanPlayer("player 2", 'O', grid);
+
+            // set the name of the second player
+            sc.nextLine(); // clear buffer
+            setPlayerName(player2);
         }
+    }
+
+    // sets the players name from input
+    private void setPlayerName(Player p) {
+        System.out.println("Enter Name: ");        
+        String name = sc.nextLine();
+        p.setName(name);
     }
 
     // acts as a main menu
     // based on the mode, the game will either assign p2 to a new player or an AI
-    private static int getMode() {
+    private int getMode() {
         System.out.println("Welcome to Tic Tac Toe!");
         System.out.println("To play against an AI press 1 ");
         System.out.println("To play against another player press 2 ");
 
-        try (Scanner sc = new Scanner(System.in)) {
-            int input;
-            while (true) { 
-                try {
-                    input = sc.nextInt();
+        int input;
+        while (true) { 
+            try {
+                input = sc.nextInt();
 
-                    if (input > 2 || input < 1) {
-                        System.out.println("OUT OF BOUNDS");
-                    } else {
-                        break;
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("INCORRECT INPUT (ENTER INTEGER)");
-                    sc.nextLine(); // clear buffer for next input
+                if (input > 2 || input < 1) {
+                    System.out.println("OUT OF BOUNDS");
+                } else {
+                    break;
                 }
+            } catch (InputMismatchException e) {
+                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
+                sc.nextLine(); // clear buffer for next input
             }
-            return input;
         }
+        return input;
     }
 
     // gets the mode of the AI based on player input
-    public static int getAIMode() {
+    private int getAIMode() {
         System.out.println("To play against a Random AI press 1 ");
         System.out.println("To play against a Beatable AI press 2 ");
         System.out.println("To play against an Unbeatable AI press 3 ");
 
-        try (Scanner sc = new Scanner(System.in)) {
-            int input;
-            while (true) {
-                try {
-                    input = sc.nextInt();
+        int input;
+        while (true) {
+            try {
+                input = sc.nextInt();
 
-                    if (input < 1 || input > 3) {
-                        System.out.println("OUT OF BOUNDS");
-                    } else {
-                        break;
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("INCORRECT INPUT (ENTER INTEGER)");
-                    sc.nextLine(); // clear buffer for next input
+                if (input < 1 || input > 3) {
+                    System.out.println("OUT OF BOUNDS");
+                } else {
+                    break;
                 }
+            } catch (InputMismatchException e) {
+                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
+                sc.nextLine(); // clear buffer for next input
             }
-            return input;
         }
+        return input;
     }
 
     // checks whether the game is finished
