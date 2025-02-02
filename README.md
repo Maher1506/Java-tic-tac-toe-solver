@@ -60,5 +60,6 @@ The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
 - https://en.wikipedia.org/wiki/Minimax
 - [Minimax Algorithm for Tic Tac Toe (Coding Challenge 154)](https://www.youtube.com/watch?v=trKjYdBASyQ&t=3s)
 - https://victorz.ca/game/t3
-- My OneNote Note on Minimax algorithm: [Minimax Algorithm.pdf](https://github.com/user-attachments/files/18633222/Minimax.Algorithm.pdf)
+- My OneNote Note on Minimax algorithm: [Minimax Algorithm.pdf](https://github.com/user-attachments/files/18633236/Minimax.Algorithm.pdf)
+
 
