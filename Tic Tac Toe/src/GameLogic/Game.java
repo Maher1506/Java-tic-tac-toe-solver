@@ -27,6 +27,13 @@ public class Game {
         // set the name of the first player
         setPlayerName(player1);
 
+        setMode();
+        setPlayerOrder();
+        setPlayerMarks();
+    }
+
+    // method to set the mode whether vs AI or vs another player
+    private void setMode() {
         int mode = getMode();
         // player chose to play against AI
         if (mode == 1) {
@@ -47,8 +54,6 @@ public class Game {
             setPlayerName(player2);
         }
 
-        setPlayerOrder();
-        setPlayerMarks();
     }
 
     // method to set player marks based on the order
