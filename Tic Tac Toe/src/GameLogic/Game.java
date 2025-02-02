@@ -23,7 +23,8 @@ public class Game {
         int mode = getMode();
         // player chose to play against AI
         if (mode == 1) {
-            player2 = new AIPlayer("AI", 'O', grid);
+            int aiMode = getAIMode();
+            player2 = new AIPlayer("AI", 'O', grid, aiMode);
         } else { // player chose to play agains another player
             player2 = new HumanPlayer("player 2", 'O', grid);
         }
@@ -43,6 +44,31 @@ public class Game {
                 input = sc.nextInt();
 
                 if (input > 2 || input < 1) {
+                    System.out.println("OUT OF BOUNDS");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
+                sc.nextLine(); // clear buffer for next input
+            }
+        }
+        return input;
+    }
+
+    // gets the mode of the AI based on player input
+    public static int getAIMode() {
+        System.out.println("To play against a Random AI press 1 ");
+        System.out.println("To play against a Beatable AI press 2 ");
+        System.out.println("To play against an Unbeatable AI press 3 ");
+
+        Scanner sc = new Scanner(System.in);
+        int input;
+        while (true) {
+            try {
+                input = sc.nextInt();
+
+                if (input < 1 || input > 3) {
                     System.out.println("OUT OF BOUNDS");
                 } else {
                     break;

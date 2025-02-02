@@ -7,8 +7,12 @@ import Grid.Grid;
 
 public class AIPlayer extends Player {
 
-    public AIPlayer(String name, char mark, Grid grid) {
+    // 1 = random, 2 = beatable, 3 = unbeatable
+    private int aiMode;
+
+    public AIPlayer(String name, char mark, Grid grid, int aiMode) {
         super(name, mark, grid);
+        this.aiMode = aiMode;
     }
 
     // handle the turn of the AI based on its mode
@@ -16,11 +20,19 @@ public class AIPlayer extends Player {
     public void handleTurn() {
         System.out.println("AI's turn: (" + getMark() + ") ");
 
-        //chooseRndMove();
-        unbeatableMode();
-        //beatableMode();
-        getGrid().displayGrid();
+        switch (aiMode) {
+            case 1:
+                chooseRndMove();
+                break;
+            case 2:
+                beatableMode();
+                break;
+            case 3:
+                unbeatableMode();
+                break;
+        }
 
+        getGrid().displayGrid();
         System.out.println("AI made its move");
     }
 
