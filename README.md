@@ -15,7 +15,7 @@ A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, in
 ## How to Play 🎮
 
 1. **Run the game** and enter the name of the player
-2. **CHoose the Game mode** select **1** to play against AI or **2** to play against another Human player.
+2. **Choose the Game mode** select **1** to play against AI or **2** to play against another Human player.
 3. If playing against AI, choose difficulty:  
    - **1** - Random AI 
    - **2** - Beatable AI  
@@ -54,13 +54,9 @@ The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
 4. Backtracking to choose the move with the highest score
 
 ## 📌Future Improvements
-- Add depth to score to choose the fastest move to win
+- Add depth to the best move to choose the fastest move to win
 - Add alpha-beta pruning for optimization
 
 ## References and Resources
 - https://en.wikipedia.org/wiki/Minimax
-![image](https://github.com/user-attachments/assets/d150cd33-7a39-40ee-9836-5a534aba1807)
 - Minimax Algorithm for Tic Tac Toe (Coding Challenge 154)
-
-
-![image](https://github.com/user-attachments/assets/aab3357a-623c-4a53-8db4-af58437a5676)
