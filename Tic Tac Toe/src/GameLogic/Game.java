@@ -16,6 +16,7 @@ public class Game {
 
     // for finding the winner
     private Player winnerPlayer;
+    private boolean isPlayer1Starting;
 
     private Scanner sc = new Scanner(System.in); // for input
     
@@ -44,6 +45,47 @@ public class Game {
             // set the name of the second player
             sc.nextLine(); // clear buffer
             setPlayerName(player2);
+        }
+
+        setPlayerOrder();
+        setPlayerMarks();
+    }
+
+    // method to set player marks based on the order
+    private void setPlayerMarks() {
+        if (isPlayer1Starting) {
+            player1.setMark('X');
+            player2.setMark('O');
+        } else {
+            player1.setMark('O');
+            player2.setMark('X');
+        }
+    }
+
+    // method for the player to chose who starts
+    private void setPlayerOrder() {
+        System.out.println("Would you like to start " + player1.getName() + "?");
+        System.out.println("Press 1 if so press 2 if not");
+
+        int input;
+        while (true) {  
+            try {
+                input = sc.nextInt();
+
+                if (input > 2 || input < 1) {
+                    System.out.println("OUT OF BOUNDS");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("INCORRECT INPUT (ENTER INTEGER)");
+                sc.nextLine(); // clear buffer for next input
+            }
+        } 
+        if (input == 1) {
+            isPlayer1Starting = true;
+        } else {
+            isPlayer1Starting = false;
         }
     }
 
@@ -144,5 +186,8 @@ public class Game {
     }
     public Player getPlayer2() {
         return player2;
+    }
+    public boolean isPlayerOneStarting() {
+        return isPlayer1Starting;
     }
 }

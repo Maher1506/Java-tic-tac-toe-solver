@@ -18,13 +18,23 @@ public class Main {
 
             // alternate turns while game is in progress
             while (!game.isGameOver()) {
-                // handle player 1's turn
-                game.getPlayer1().handleTurn();
+                if (game.isPlayerOneStarting()) {
+                    // handle player 1's turn
+                    game.getPlayer1().handleTurn();
 
-                if (game.isGameOver()) { break; }
+                    if (game.isGameOver()) { break; }
 
-                // handle player 2's turn
-                game.getPlayer2().handleTurn();
+                    // handle player 2's turn
+                    game.getPlayer2().handleTurn();
+                } else {
+                    // handle player 2's turn
+                    game.getPlayer2().handleTurn();
+
+                    if (game.isGameOver()) { break; }
+
+                    // handle player 1's turn
+                    game.getPlayer1().handleTurn();
+                }
             }
             
             game.displayFinalGameState();
