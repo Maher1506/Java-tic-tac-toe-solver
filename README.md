@@ -59,4 +59,5 @@ The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
 
 ## References and Resources
 - https://en.wikipedia.org/wiki/Minimax
-- Minimax Algorithm for Tic Tac Toe (Coding Challenge 154)
+- [Minimax Algorithm for Tic Tac Toe (Coding Challenge 154)](https://www.youtube.com/watch?v=trKjYdBASyQ&t=3s)
+- https://victorz.ca/game/t3
