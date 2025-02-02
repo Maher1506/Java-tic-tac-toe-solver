@@ -27,6 +27,7 @@ A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, in
 8. **Enjoy playing!** 🎉
 
 ## Code Structure 
+src/ ├── GameLogic/ │ ├── Game.java # Main game loop & logic │ ├── MoveScore.java # Represents move evaluation in Minimax │ ├── Grid/ │ ├── Grid.java # Represents the Tic-Tac-Toe board │ ├── Players/ │ ├── Player.java # Base class for all players │ ├── HumanPlayer.java # Handles human player input │ ├── AIPlayer.java # AI player with Minimax & difficulty levels │ ├── AIMode.java # Enum for AI difficulty │ ├── Main.java # Entry point for the game
 
 src/ 
 ├── GameLogic/           
