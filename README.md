@@ -2,7 +2,7 @@
 
 A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, including Random, Beatable, and Unbeatable AI using the Minimax algorithm. Players can compete against another human or different AI modes.
 
-## Features 
+## 🏆 Features 
 
 -  **Play Against AI or a Human Opponent**  
 -  **Multiple AI Difficulty Levels**:  
@@ -12,7 +12,7 @@ A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, in
 -  **Console-based UI**  
 -  **Modular and Extensible Codebase**  
 
-## How to Play 🎮
+## 🎮 How to Play 
 
 1. **Run the game** and enter the name of the player
 2. **Choose the Game mode** select **1** to play against AI or **2** to play against another Human player.
@@ -41,7 +41,7 @@ A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, in
     - `AIMode.java` → Enum for AI difficulty modes (RANDOM, BEATABLE, UNBEATABLE)
   - `Main.java` → Main game loop and entry point of the game
 
-## AI Implementation
+## :robot: AI Implementation
 
 The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
 1. Finding all possible moves
@@ -60,3 +60,5 @@ The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
 - https://en.wikipedia.org/wiki/Minimax
 - [Minimax Algorithm for Tic Tac Toe (Coding Challenge 154)](https://www.youtube.com/watch?v=trKjYdBASyQ&t=3s)
 - https://victorz.ca/game/t3
+- My OneNote Note on Minimax algorithm: [Minimax Algorithm.pdf](https://github.com/user-attachments/files/18633222/Minimax.Algorithm.pdf)
+
