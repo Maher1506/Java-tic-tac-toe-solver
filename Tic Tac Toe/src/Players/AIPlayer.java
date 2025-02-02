@@ -2,15 +2,16 @@ package Players;
 
 import java.util.ArrayList;
 
+import Enums.AIMode;
 import GameLogic.MoveScore;
 import Grid.Grid;
 
 public class AIPlayer extends Player {
 
     // 1 = random, 2 = beatable, 3 = unbeatable
-    private int aiMode;
+    private AIMode aiMode;
 
-    public AIPlayer(String name, char mark, Grid grid, int aiMode) {
+    public AIPlayer(String name, char mark, Grid grid, AIMode aiMode) {
         super(name, mark, grid);
         this.aiMode = aiMode;
     }
@@ -21,15 +22,9 @@ public class AIPlayer extends Player {
         System.out.println("AI's turn: (" + getMark() + ") ");
 
         switch (aiMode) {
-            case 1:
-                chooseRndMove();
-                break;
-            case 2:
-                beatableMode();
-                break;
-            case 3:
-                unbeatableMode();
-                break;
+            case RANDOM -> chooseRndMove();
+            case BEATABLE -> beatableMode();
+            case UNBEATABLE -> unbeatableMode();
         }
 
         getGrid().displayGrid();

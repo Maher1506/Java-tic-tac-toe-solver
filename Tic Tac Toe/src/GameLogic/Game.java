@@ -2,6 +2,7 @@ package GameLogic;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Enums.AIMode;
 import Grid.Grid;
 import Players.AIPlayer;
 import Players.HumanPlayer;
@@ -28,8 +29,15 @@ public class Game {
         int mode = getMode();
         // player chose to play against AI
         if (mode == 1) {
+            // choose AI mode
             int aiMode = getAIMode();
-            player2 = new AIPlayer("AI", 'O', grid, aiMode);
+            if (aiMode == 1) {
+                player2 = new AIPlayer("AI", 'O', grid, AIMode.RANDOM);
+            } else if (aiMode == 2) {
+                player2 = new AIPlayer("AI", 'O', grid, AIMode.BEATABLE);
+            } else if (aiMode == 3) {
+                player2 = new AIPlayer("AI", 'O', grid, AIMode.UNBEATABLE);
+            }
         } else { // player chose to play agains another player
             player2 = new HumanPlayer("player 2", 'O', grid);
 
