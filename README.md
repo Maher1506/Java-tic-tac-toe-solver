@@ -2,6 +2,10 @@
 
 A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, including Random, Beatable, and Unbeatable AI using the Minimax algorithm. Players can compete against another human or different AI modes.
 
+## 🚀 Overview 
+
+Tic Tac Toe is a solved game, with a draw being forced if both players play optimally. If a player plays optimally, they can win or draw based on the other player's moves. The game is played by two players on a 3x3 grid where each player is assigned 'X' or 'O'. The game takes turns with each player placing their mark on the grid. The player wins if places his mark in a complete horizontal, vertical, or diagonal way. The game is a draw if the grid is full with no player winning. The game contains 138 terminal states and 255,168 possible valid states.
+
 ## 🏆 Features 
 
 -  **Play Against AI or a Human Opponent**  
@@ -43,6 +47,12 @@ A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, in
 
 ## :robot: AI Implementation
 
+This is a simple implementation of a brute-force minimax algorithm that has no extra features like:
+- Alpha-beta pruning
+- Depth in score
+- Evaluation function
+- etc...
+
 The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
 1. Finding all possible moves
 2. Alternating between MIN and MAX opponents
@@ -57,9 +67,8 @@ The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
 - Add alpha-beta pruning for optimization
 
 ## References and Resources
-- https://en.wikipedia.org/wiki/Minimax
-- [Minimax Algorithm for Tic Tac Toe (Coding Challenge 154)](https://www.youtube.com/watch?v=trKjYdBASyQ&t=3s)
-- https://victorz.ca/game/t3
+- Tic Tac Toe Wikipedia page: https://en.wikipedia.org/wiki/Tic-tac-toe#
+- Minimax algorithm Wikipedia page: https://en.wikipedia.org/wiki/Minimax
+- The Coding Train video: [Minimax Algorithm for Tic Tac Toe (Coding Challenge 154)](https://www.youtube.com/watch?v=trKjYdBASyQ&t=3s)
+- Analyzer for Tic Tac Toe: https://victorz.ca/game/t3
 - My OneNote Note on Minimax algorithm: [Minimax Algorithm.pdf](https://github.com/user-attachments/files/18633236/Minimax.Algorithm.pdf)
-
-
