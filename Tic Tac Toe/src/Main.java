@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 import GameLogic.Game;
-import Grid.Grid;
 
 public class Main {
 
@@ -10,11 +9,10 @@ public class Main {
     public static void main(String[] args) {
         //main game loop
         while (true) {
-            Grid grid = new Grid();
-            Game game = new Game(grid);
+            Game game = new Game();
 
             game.displayStats();
-            grid.displayGrid();
+            game.getGrid().displayGrid();
 
             // alternate turns while game is in progress
             while (!game.isGameOver()) {

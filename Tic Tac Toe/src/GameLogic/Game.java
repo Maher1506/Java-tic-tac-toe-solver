@@ -15,13 +15,12 @@ public class Game {
     private Player player2;
 
     // for finding the winner
-    private Player winnerPlayer;
     private boolean isPlayer1Starting;
 
     private Scanner sc = new Scanner(System.in); // for input
     
-    public Game(Grid grid) {
-        this.grid = grid;
+    public Game() {
+        this.grid = new Grid();
 
         player1 = new HumanPlayer("Player 1", 'X', grid);
         // set the name of the first player
@@ -159,23 +158,12 @@ public class Game {
     public void displayFinalGameState() {
         System.out.println();
 
-        if (grid.getWinnerMark() == 'X') {
-            findWinnerPlayer();
-            System.out.println("Player: " + winnerPlayer.getName() + " Won!");
-        } else if (grid.getWinnerMark()  == 'O') {
-            findWinnerPlayer();
-            System.out.println("Player: " + winnerPlayer.getName() + " Won!");
+        if (grid.getWinnerMark() == player1.getMark()) {
+            System.out.println("Player: " + player1.getName() + " Won!");
+        } else if (grid.getWinnerMark()  == player2.getMark()) {
+            System.out.println("Player: " + player2.getName() + " Won!");
         } else {
             System.out.println("Game is a Tie!");
-        }
-    }
-
-    // method to find which player won from the winner mark
-    private void findWinnerPlayer() {
-        if (grid.getWinnerMark()  == player1.getMark()) {
-            winnerPlayer = player1;
-        } else {
-            winnerPlayer = player2;
         }
     }
 
@@ -194,5 +182,8 @@ public class Game {
     }
     public boolean isPlayerOneStarting() {
         return isPlayer1Starting;
+    }
+    public Grid getGrid() {
+        return grid;
     }
 }
