@@ -4,7 +4,7 @@ A Java-based Tic-Tac-Toe game with AI opponents of varying difficulty levels, in
 
 ## 🚀 Overview 
 
-Tic Tac Toe is a solved game, with a draw being forced if both players play optimally. If a player plays optimally, they can win or draw based on the other player's moves. The game is played by two players on a 3x3 grid where each player is assigned 'X' or 'O'. The game takes turns with each player placing their mark on the grid. The player wins if places his mark in a complete horizontal, vertical, or diagonal way. The game is a draw if the grid is full with no player winning. The game contains 138 terminal states and 255,168 possible valid states.
+Tic Tac Toe is a solved game, with a draw being forced if both players play optimally. If a player plays optimally, he can win or draw based on the other player's moves. Two players play the game on a 3x3 grid where each player is assigned 'X' or 'O'. The game takes turns with each player placing their mark on the grid. The player wins if he places his mark in a completely horizontal, vertical, or diagonal way. The game is a draw if the grid is full with no player winning. The game contains 138 terminal states and 255,168 possible valid states. The complete game tree at the start of the game has a depth of 9 (first depth 0).
 
 ## 🏆 Features 
 
