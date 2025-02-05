@@ -10,6 +10,10 @@ import Players.Player;
 
 public class Game {
 
+    // ANSI color codes
+    public static final String RESET = "\033[0m";
+    public static final String GREEN = "\033[0;32m"; 
+
     private Grid grid;
     private Player player1;
     private Player player2;
@@ -159,11 +163,11 @@ public class Game {
         System.out.println();
 
         if (grid.getWinnerMark() == player1.getMark()) {
-            System.out.println("Player: " + player1.getName() + " Won!");
+            System.out.println(GREEN + "Player: " + player1.getName() + " Won!" + RESET);
         } else if (grid.getWinnerMark()  == player2.getMark()) {
-            System.out.println("Player: " + player2.getName() + " Won!");
+            System.out.println(GREEN + "Player: " + player2.getName() + " Won!" + RESET);
         } else {
-            System.out.println("Game is a Tie!");
+            System.out.println(GREEN + "Game is a Tie!" + RESET);
         }
     }
 

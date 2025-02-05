@@ -1,10 +1,16 @@
 package Grid;
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Grid {
 
     private char[][] grid;
     private char winnerMark;
+
+    // ANSI color codes
+    public static final String RED = "\033[0;31m";   
+    public static final String BLUE = "\033[0;34m";   
+    public static final String RESET = "\033[0m";  
     
     public static final int GRID_SIZE = 3;
 
@@ -57,7 +63,13 @@ public class Grid {
             for (int j = 0; j < GRID_SIZE; j++) {
                 char cell = grid[i][j];
                 
-                System.out.print(" " + cell + " ");
+                if (cell == 'X') {
+                    System.out.print(" " + RED + cell + RESET + " ");
+                } else if (cell == 'O') {
+                    System.out.print(" " + BLUE + cell + RESET + " ");
+                } else {
+                    System.out.print(" " + cell + " ");
+                }
 
                 // to print the vertical lines
                 if (j != GRID_SIZE-1) {
