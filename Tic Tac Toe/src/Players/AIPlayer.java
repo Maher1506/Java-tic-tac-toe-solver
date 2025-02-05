@@ -3,7 +3,7 @@ package Players;
 import java.util.ArrayList;
 
 import Enums.AIMode;
-import GameLogic.MoveScore;
+import GameLogic.Move;
 import Grid.Grid;
 
 public class AIPlayer extends Player {
@@ -45,31 +45,31 @@ public class AIPlayer extends Player {
     // method to choose the best move to play (AI Impossible Bot)
     // this approach uses the Minimax algorithm to choose the move with the best possible outcome
     public void unbeatableMode() {
-        MoveScore bestMove = chooseBestMove(getGrid(), true);
+        Move bestMove = chooseBestMove(getGrid(), true, 0);
         getGrid().markCell(bestMove.getMove()[0], bestMove.getMove()[1], getMark());
     }
-    private MoveScore chooseBestMove(Grid state, boolean isMaximizingPlayer) {
+    private Move chooseBestMove(Grid state, boolean isMaximizingPlayer, int depth) {
         // teriminal state reached
         if (state.isTerminalState()) {
             char winnerMark = state.getWinnerMark(); // mark of winner
             // tie
             if (winnerMark == '\0') { 
-                return new MoveScore(0, null); 
+                return new Move(0, null, depth); 
             }
             // the AI won
             else if (winnerMark == getMark()) { 
-                return new MoveScore(1, null); 
+                return new Move(1, null, depth); 
             }
             // the opponent won
             else {
-                return new MoveScore(-1, null); 
+                return new Move(-1, null, depth); 
             }
         }
 
         // if the turn of the MAX player (AI's turn)
         if (isMaximizingPlayer) {
             // worst possible case
-            MoveScore bestMove = new MoveScore(Integer.MIN_VALUE, null); 
+            Move bestMove = new Move(Integer.MIN_VALUE, null, depth); 
             // loop through every possible move
             for (int[] move : state.getAvailableMoves()) {
                 // apply move on the current state and save it as new state
@@ -77,10 +77,11 @@ public class AIPlayer extends Player {
                 newState.markCell(move[0], move[1], getMark());
 
                 // get the score of every move recursviely
-                MoveScore currentMove = chooseBestMove(newState, false);
-                // update the best move of current move is better
-                if (currentMove.getScore() > bestMove.getScore()) {
-                    bestMove = new MoveScore(currentMove.getScore(), move);
+                Move currentMove = chooseBestMove(newState, false, depth+1);
+                // update the best move if current move has better score or same score but better depth
+                if (currentMove.getScore() > bestMove.getScore() ||
+                    (currentMove.getScore() == bestMove.getScore() && currentMove.getDepth() < bestMove.getDepth())) {
+                    bestMove = new Move(currentMove.getScore(), move, depth);
                 }
             }
             return bestMove;
@@ -89,7 +90,7 @@ public class AIPlayer extends Player {
         // if the turn of the MIN player (Opponnent's turn)
         else {
             // worst possible case
-            MoveScore bestMove = new MoveScore(Integer.MAX_VALUE, null);
+            Move bestMove = new Move(Integer.MAX_VALUE, null, depth);
             // loop through every possible move
             for (int[] move : state.getAvailableMoves()) {
                 // apply move on the current state and save it as new state
@@ -97,11 +98,12 @@ public class AIPlayer extends Player {
                 newState.markCell(move[0], move[1], getOpponentMark());
 
                 // get the score of every move recursviely
-                MoveScore currentMove = chooseBestMove(newState, true);
-                // update the best move of current move is better
-                if (currentMove.getScore() < bestMove.getScore()) {
-                    bestMove = new MoveScore(currentMove.getScore(), move);
-                }            }
+                Move currentMove = chooseBestMove(newState, true, depth+1);
+                // update the best move if current move has better score or same score but better depth
+                if (currentMove.getScore() < bestMove.getScore() ||
+                    (currentMove.getScore() == bestMove.getScore() && currentMove.getDepth() < bestMove.getDepth())) {
+                    bestMove = new Move(currentMove.getScore(), move, depth);
+                }        }
             return bestMove;
         }
     }

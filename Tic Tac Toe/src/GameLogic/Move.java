@@ -1,12 +1,14 @@
 package GameLogic;
-public class MoveScore {
+public class Move {
     
     int[] move;
     int score;
+    int depth;
 
-    public MoveScore(int score, int[] move) {
+    public Move(int score, int[] move, int depth) {
         this.move = move;
         this.score = score;
+        this.depth = depth;
     }
 
     public int getScore() {
@@ -14,5 +16,8 @@ public class MoveScore {
     }
     public int[] getMove() {
         return move;
+    }
+    public int getDepth() {
+        return depth;
     }
 }
