@@ -47,9 +47,10 @@ Tic Tac Toe is a solved game, with a draw being forced if both players play opti
 
 ## :robot: AI Implementation
 
-This is a simple implementation of a brute-force minimax algorithm that has no extra features like:
+Due to the simplicity of Tic Tac TOe and its relatively easy computation, we can brute-force all the possible game states until they reach the terminal states easily without further optimizations. Although this works for Tic Tac Toe, more complex games (Connect 4, Chess, Go) will need many more optimizations to beat humans. This is meant as an introductory project to the world of zero-sum games and their AI.
+
+This is a simple implementation of a brute-force minimax algorithm that has no extra optimizations like:
 - Alpha-beta pruning
-- Depth in score
 - Evaluation function
 - etc...
 
@@ -60,10 +61,9 @@ The **Unbeatable AI** uses the **Minimax Algorithm** to find the best move by:
    - +1 for a WIN
    - -1 for a LOSS
    - 0 for a TIE
-4. Backtracking to choose the move with the highest score
+4. Backtracking to choose the move with the highest score and better depth to play the game optimally
 
 ## 📌Future Improvements
-- Add depth to the best move to choose the fastest move to win
 - Add alpha-beta pruning for optimization
 
 ## References and Resources
