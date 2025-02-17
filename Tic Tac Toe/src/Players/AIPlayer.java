@@ -46,24 +46,12 @@ public class AIPlayer extends Player {
     // this approach uses the Minimax algorithm to choose the move with the best possible outcome
     public void unbeatableMode() {
         Move bestMove = chooseBestMove(getGrid(), true, 0);
-        getGrid().markCell(bestMove.getMove()[0], bestMove.getMove()[1], getMark());
+        getGrid().makeMove(bestMove.getMove()[0], bestMove.getMove()[1], getMark());
     }
     private Move chooseBestMove(Grid state, boolean isMaximizingPlayer, int depth) {
         // teriminal state reached
         if (state.isTerminalState()) {
-            char winnerMark = state.getWinnerMark(); // mark of winner
-            // tie
-            if (winnerMark == '\0') { 
-                return new Move(0, null, depth); 
-            }
-            // the AI won
-            else if (winnerMark == getMark()) { 
-                return new Move(1, null, depth); 
-            }
-            // the opponent won
-            else {
-                return new Move(-1, null, depth); 
-            }
+            return evaluate(state, depth);
         }
 
         // if the turn of the MAX player (AI's turn)
@@ -72,12 +60,13 @@ public class AIPlayer extends Player {
             Move bestMove = new Move(Integer.MIN_VALUE, null, depth); 
             // loop through every possible move
             for (int[] move : state.getAvailableMoves()) {
-                // apply move on the current state and save it as new state
-                Grid newState = new Grid(state);
-                newState.markCell(move[0], move[1], getMark());
+                state.makeMove(move[0], move[1], getMark()); // apply move on the current state
 
                 // get the score of every move recursviely
-                Move currentMove = chooseBestMove(newState, false, depth+1);
+                Move currentMove = chooseBestMove(state, false, depth+1);
+
+                state.undoMove(move[0], move[1]);  // undo move done
+
                 // update the best move if current move has better score or same score but better depth
                 if (currentMove.getScore() > bestMove.getScore() ||
                     (currentMove.getScore() == bestMove.getScore() && currentMove.getDepth() < bestMove.getDepth())) {
@@ -93,12 +82,13 @@ public class AIPlayer extends Player {
             Move bestMove = new Move(Integer.MAX_VALUE, null, depth);
             // loop through every possible move
             for (int[] move : state.getAvailableMoves()) {
-                // apply move on the current state and save it as new state
-                Grid newState = new Grid(state);
-                newState.markCell(move[0], move[1], getOpponentMark());
+                state.makeMove(move[0], move[1], getOpponentMark()); // apply move on the current state
 
                 // get the score of every move recursviely
-                Move currentMove = chooseBestMove(newState, true, depth+1);
+                Move currentMove = chooseBestMove(state, false, depth+1);
+
+                state.undoMove(move[0], move[1]);  // undo move done
+                
                 // update the best move if current move has better score or same score but better depth
                 if (currentMove.getScore() < bestMove.getScore() ||
                     (currentMove.getScore() == bestMove.getScore() && currentMove.getDepth() < bestMove.getDepth())) {
@@ -108,6 +98,23 @@ public class AIPlayer extends Player {
         }
     }
 
+    // method to evaluate terminal states
+    private Move evaluate(Grid state, int depth) {
+        char winnerMark = state.getWinnerMark(); // mark of winner
+            // tie
+            if (winnerMark == '\0') { 
+                return new Move(0, null, depth); 
+            }
+            // the AI won
+            else if (winnerMark == getMark()) { 
+                return new Move(1, null, depth); 
+            }
+            // the opponent won
+            else {
+                return new Move(-1, null, depth); 
+            }
+    }
+
     // method to choose a random move to play (AI Random Bot)
     private void chooseRndMove() {
         ArrayList<int[]> availableMoves = getGrid().getAvailableMoves();
@@ -115,6 +122,6 @@ public class AIPlayer extends Player {
         int rndMove = (int) (Math.random() * availableMoves.size());
         int[] move = availableMoves.get(rndMove);
 
-        getGrid().markCell(move[0], move[1], getMark());
+        getGrid().makeMove(move[0], move[1], getMark());
     }
 }

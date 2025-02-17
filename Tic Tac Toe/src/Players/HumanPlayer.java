@@ -30,7 +30,7 @@ public class HumanPlayer extends Player {
         }
 
         // mark the chosen cell with the mark
-        getGrid().markCell(row-1, column-1, getMark());
+        getGrid().makeMove(row-1, column-1, getMark());
         getGrid().displayGrid();
     }
 

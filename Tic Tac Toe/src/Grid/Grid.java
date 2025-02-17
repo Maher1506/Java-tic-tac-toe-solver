@@ -1,5 +1,4 @@
 package Grid;
-import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Grid {
@@ -22,18 +21,6 @@ public class Grid {
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
                 grid[i][j] = ' ';
-            }
-        }
-    }
-
-    // copy constructor 
-    public Grid(Grid other) {
-        grid = new char[GRID_SIZE][GRID_SIZE];
-        winnerMark = other.winnerMark;
-
-        for (int i = 0; i < GRID_SIZE; i++) {
-            for (int j = 0; j < GRID_SIZE; j++) {
-                grid[i][j] = other.getCell(i, j);
             }
         }
     }
@@ -149,8 +136,13 @@ public class Grid {
     }
 
     // to mark a cell in the grid
-    public void markCell(int row, int column, char mark) {
+    public void makeMove(int row, int column, char mark) {
         grid[row][column] = mark;
+    }
+
+    // undo a move
+    public void undoMove(int row, int column) {
+        grid[row][column] = ' ';
     }
 
     // to get the value of a specific cell
