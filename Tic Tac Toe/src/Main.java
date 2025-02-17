@@ -7,6 +7,10 @@ public class Main {
     private static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
+        gameLoop();
+    }
+
+    private static void gameLoop() {
         //main game loop
         while (true) {
             Game game = new Game();
