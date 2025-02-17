@@ -5,6 +5,7 @@ public class Grid {
 
     private char[][] grid;
     private char winnerMark;
+    private int moveCounter;
 
     // ANSI color codes
     public static final String RED = "\033[0;31m";   
@@ -15,6 +16,7 @@ public class Grid {
 
     // default constructor
     public Grid() {
+        moveCounter = 0;
         grid = new char[GRID_SIZE][GRID_SIZE];
 
         // initialize grid with empty chars
@@ -138,11 +140,13 @@ public class Grid {
     // to mark a cell in the grid
     public void makeMove(int row, int column, char mark) {
         grid[row][column] = mark;
+        moveCounter++;
     }
 
     // undo a move
     public void undoMove(int row, int column) {
         grid[row][column] = ' ';
+        moveCounter--;
     }
 
     // to get the value of a specific cell
@@ -153,5 +157,8 @@ public class Grid {
     // getters
     public char getWinnerMark() {
         return winnerMark;
+    }
+    public int getMoveCounter() {
+        return moveCounter;
     }
 }

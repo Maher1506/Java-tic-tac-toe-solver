@@ -161,7 +161,7 @@ public class Game {
     // display the winner and loser or display if there is a tie
     public void displayFinalGameState() {
         System.out.println();
-
+        System.out.println(grid.getWinnerMark());
         if (grid.getWinnerMark() == player1.getMark()) {
             System.out.println(GREEN + "Player: " + player1.getName() + " Won!" + RESET);
         } else if (grid.getWinnerMark()  == player2.getMark()) {

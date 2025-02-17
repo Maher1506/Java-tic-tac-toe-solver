@@ -45,32 +45,31 @@ public class AIPlayer extends Player {
     // method to choose the best move to play (AI Impossible Bot)
     // this approach uses the Minimax algorithm to choose the move with the best possible outcome
     public void unbeatableMode() {
-        Move bestMove = chooseBestMove(getGrid(), true, 0);
+        Move bestMove = chooseBestMove(getGrid(), true);
         getGrid().makeMove(bestMove.getMove()[0], bestMove.getMove()[1], getMark());
     }
-    private Move chooseBestMove(Grid state, boolean isMaximizingPlayer, int depth) {
+    private Move chooseBestMove(Grid state, boolean isMaximizingPlayer) {
         // teriminal state reached
         if (state.isTerminalState()) {
-            return evaluate(state, depth);
+            return evaluate(state);
         }
 
         // if the turn of the MAX player (AI's turn)
         if (isMaximizingPlayer) {
             // worst possible case
-            Move bestMove = new Move(Integer.MIN_VALUE, null, depth); 
+            Move bestMove = new Move(Integer.MIN_VALUE, null); 
             // loop through every possible move
             for (int[] move : state.getAvailableMoves()) {
                 state.makeMove(move[0], move[1], getMark()); // apply move on the current state
 
                 // get the score of every move recursviely
-                Move currentMove = chooseBestMove(state, false, depth+1);
+                Move currentMove = chooseBestMove(state, false);
 
                 state.undoMove(move[0], move[1]);  // undo move done
 
                 // update the best move if current move has better score or same score but better depth
-                if (currentMove.getScore() > bestMove.getScore() ||
-                    (currentMove.getScore() == bestMove.getScore() && currentMove.getDepth() < bestMove.getDepth())) {
-                    bestMove = new Move(currentMove.getScore(), move, depth);
+                if (currentMove.getScore() > bestMove.getScore()) {
+                    bestMove = new Move(currentMove.getScore(), move);
                 }
             }
             return bestMove;
@@ -79,39 +78,38 @@ public class AIPlayer extends Player {
         // if the turn of the MIN player (Opponnent's turn)
         else {
             // worst possible case
-            Move bestMove = new Move(Integer.MAX_VALUE, null, depth);
+            Move bestMove = new Move(Integer.MAX_VALUE, null);
             // loop through every possible move
             for (int[] move : state.getAvailableMoves()) {
                 state.makeMove(move[0], move[1], getOpponentMark()); // apply move on the current state
 
                 // get the score of every move recursviely
-                Move currentMove = chooseBestMove(state, false, depth+1);
+                Move currentMove = chooseBestMove(state, false);
 
                 state.undoMove(move[0], move[1]);  // undo move done
-                
+
                 // update the best move if current move has better score or same score but better depth
-                if (currentMove.getScore() < bestMove.getScore() ||
-                    (currentMove.getScore() == bestMove.getScore() && currentMove.getDepth() < bestMove.getDepth())) {
-                    bestMove = new Move(currentMove.getScore(), move, depth);
+                if (currentMove.getScore() < bestMove.getScore()) {
+                    bestMove = new Move(currentMove.getScore(), move);
                 }        }
             return bestMove;
         }
     }
 
     // method to evaluate terminal states
-    private Move evaluate(Grid state, int depth) {
+    private Move evaluate(Grid state) {
         char winnerMark = state.getWinnerMark(); // mark of winner
             // tie
             if (winnerMark == '\0') { 
-                return new Move(0, null, depth); 
+                return new Move(0, null); 
             }
             // the AI won
             else if (winnerMark == getMark()) { 
-                return new Move(1, null, depth); 
+                return new Move(10 - state.getMoveCounter(), null); 
             }
             // the opponent won
             else {
-                return new Move(-1, null, depth); 
+                return new Move(-10 + state.getMoveCounter(), null); 
             }
     }
 

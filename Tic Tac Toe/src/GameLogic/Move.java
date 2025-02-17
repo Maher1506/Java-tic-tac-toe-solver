@@ -3,12 +3,10 @@ public class Move {
     
     int[] move;
     int score;
-    int depth;
 
-    public Move(int score, int[] move, int depth) {
+    public Move(int score, int[] move) {
         this.move = move;
         this.score = score;
-        this.depth = depth;
     }
 
     public int getScore() {
@@ -16,8 +14,5 @@ public class Move {
     }
     public int[] getMove() {
         return move;
-    }
-    public int getDepth() {
-        return depth;
     }
 }
