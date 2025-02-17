@@ -147,6 +147,10 @@ public class Grid {
     public void undoMove(int row, int column) {
         grid[row][column] = ' ';
         moveCounter--;
+
+        // re-evaluate the winner for the previous state
+        winnerMark = '\0';
+        isGameWon();
     }
 
     // to get the value of a specific cell

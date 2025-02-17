@@ -99,18 +99,18 @@ public class AIPlayer extends Player {
     // method to evaluate terminal states
     private Move evaluate(Grid state) {
         char winnerMark = state.getWinnerMark(); // mark of winner
-            // tie
-            if (winnerMark == '\0') { 
-                return new Move(0, null); 
-            }
-            // the AI won
-            else if (winnerMark == getMark()) { 
-                return new Move(10 - state.getMoveCounter(), null); 
-            }
-            // the opponent won
-            else {
-                return new Move(-10 + state.getMoveCounter(), null); 
-            }
+        // tie
+        if (winnerMark == '\0') { 
+            return new Move(0, null); 
+        }
+        // the AI won
+        else if (winnerMark == getMark()) { 
+            return new Move(10 - state.getMoveCounter(), null); 
+        }
+        // the opponent won
+        else {
+            return new Move(-10 + state.getMoveCounter(), null); 
+        }
     }
 
     // method to choose a random move to play (AI Random Bot)
